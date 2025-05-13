@@ -9,6 +9,8 @@ return {
         return
       end
 
+      local prose = require('nvim-prose')
+
       local hide_in_width = function()
         return vim.fn.winwidth(0) > 80
       end
@@ -82,8 +84,17 @@ return {
           lualine_b = { mode },
           lualine_c = {},
           -- lualine_x = { "encoding", "fileformat", "filetype" },
-          lualine_x = { diff, spaces, "encoding", filetype },
-          lualine_y = { location },
+          lualine_x = {
+            diff,
+            spaces,
+            "encoding",
+            filetype
+          },
+          lualine_y = {
+            { prose.word_count, cond = prose.is_available },
+            { prose.reading_time, cond = prose.is_available },
+            location,
+          },
           lualine_z = { progress },
         },
         inactive_sections = {

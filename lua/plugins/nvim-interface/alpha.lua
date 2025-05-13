@@ -8,6 +8,10 @@ return {
         return
       end
 
+      -- Additional colors
+      vim.api.nvim_set_hl(0, "bratGreen", { fg = "#8ACE00" })
+      vim.api.nvim_set_hl(0, "hotPink", { fg = "#FF69B4" })
+
       local dashboard = require("alpha.themes.dashboard")
       dashboard.section.header.val = {
         [[                               __                ]],
@@ -33,14 +37,12 @@ return {
         -- local fortune = handle:read("*a")
         -- handle:close()
         -- return fortune
-        return "365 PARTYGIRL"
+        return "IN THE NAME OF SHY WE TRUST"
       end
 
       dashboard.section.footer.val = footer()
 
-      vim.api.nvim_set_hl(0, "bratGreen", { fg = "#8ACE00" })
-
-      dashboard.section.footer.opts.hl = "bratGreen"
+      dashboard.section.footer.opts.hl = "hotPink"
       dashboard.section.header.opts.hl = "Include"
       dashboard.section.buttons.opts.hl = "Keyword"
 

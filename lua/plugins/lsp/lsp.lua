@@ -1,7 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig", -- enable LSP
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     config = function ()
       local status_ok, _ = pcall(require, "lspconfig")
       if not status_ok then
@@ -13,7 +13,7 @@ return {
   },
   {
     "williamboman/mason.nvim", -- simple to  language server installer
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     dependencies = {
       -- Auto-install LSPs, linters, formatters, debuggers (For Java)
       "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -51,6 +51,10 @@ return {
         "cmake",
         -- Tailwind CSS
         "tailwindcss",
+        -- latex
+        "texlab",
+        -- sql
+        "sqlls",
       }
 
       local settings = {
@@ -83,20 +87,6 @@ return {
       -- There is an issue with mason-tools-installer running with VeryLazy, since it triggers on VimEnter which has already occurred prior to this plugin loading so we need to call install explicitly
       -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim/issues/39
       vim.api.nvim_command('MasonToolsInstall')
-
-      -- For Java debugging
-      local mason_tool_status, mason_tool_installer = pcall(require, "mason-tool-installer")
-      if not mason_tool_status then
-        return
-      end
-
-      mason_tool_installer.setup({
-        -- Install these linters, formatters and debuggers automatically
-        ensure_installed = {
-          "java-debug-adapter",
-          "java-test"
-        }
-      })
 
       local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
       if not lspconfig_status_ok then

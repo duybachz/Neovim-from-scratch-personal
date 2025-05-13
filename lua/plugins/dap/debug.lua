@@ -1,12 +1,3 @@
-local function getCodeLLDB()
-  local mason_registry = require "mason-registry"
-  local codelldb = mason_registry.get_package "codelldb"
-  local extension_path = codelldb:get_install_path() .. "/extension/"
-  local codelldb_path = extension_path .. "adapter/codelldb"
-  local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
-  return codelldb_path, liblldb_path
-end
-
 return {
   {
     'mfussenegger/nvim-dap',
@@ -25,13 +16,13 @@ return {
     },
     event = "VeryLazy",
     config = function ()
-      local status_ok, dap = pcall(require, "dap")
-      if not status_ok then
+      local _, dap = pcall(require, "dap")
+      if not _ then
         return
       end
 
-      local status_ok_1, dapui = pcall(require, "dapui")
-      if not status_ok_1 then
+      local _, dapui = pcall(require, "dapui")
+      if not _ then
         return
       end
       
@@ -129,6 +120,16 @@ return {
           print("nvim-dap-python: debugpy not found in current environment")
         end
       end
+
+      local function getCodeLLDB()
+        local mason_registry = require "mason-registry"
+        local codelldb = mason_registry.get_package "codelldb"
+        local extension_path = vim.fn.expand("$MASON/packages/codelldb")
+        local codelldb_path = extension_path .. "adapter/codelldb"
+        local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+        return codelldb_path, liblldb_path
+      end
+
       -- For C, C++ and Rust
       local codelldb_path, _ = getCodeLLDB()
       dap.adapters.codelldb = {
@@ -143,6 +144,7 @@ return {
           -- detached = false,
         }
       }
+
       dap.configurations.cpp = {
         {
           name = "Launch file",
@@ -163,11 +165,18 @@ return {
       -- Based on alphi2phi/modern-neovim 
       -- https://github.com/alpha2phi/modern-neovim/blob/main/lua/pde/typescript.lua
       local function get_js_debug()
-        local install_path = require("mason-registry").get_package("js-debug-adapter"):get_install_path()
+        local js_debug_adapter = require("mason-registry").get_package("js-debug-adapter")
+        local install_path = vim.fn.expand("$MASON/packages/js-debug-adapter")
         return install_path .. "/js-debug/src/dapDebugServer.js"
       end
 
-      for _, adapter in ipairs { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" } do
+      for _, adapter in ipairs {
+        "pwa-node",
+        "pwa-chrome",
+        "pwa-msedge",
+        "node-terminal",
+        "pwa-extensionHost"
+      } do
         dap.adapters[adapter] = {
           type = "server",
           host = "localhost",
@@ -270,6 +279,19 @@ return {
       }
 
       -- For Java
+      local _, mason_tool_installer = pcall(require, "mason-tool-installer")
+      if not _ then
+        return
+      end
+
+      mason_tool_installer.setup({
+        -- Install these linters, formatters and debuggers automatically
+        ensure_installed = {
+          "java-debug-adapter",
+          "java-test"
+        }
+      })
+
       dap.configurations.java = {
         {
           name = "Debug Launch (2GB)";
