@@ -28,33 +28,49 @@ return {
         -- "jdtls",
         "gradle_ls",
         "groovyls",
+
         -- Lua
         "lua_ls",
+
         -- CSS
         "cssls",
+
         -- HTML
         "html",
+
         -- Javascript
         -- NOTE: Replaced with `pmizio/typescript-tools.nvim`
-        -- "ts_ls",
+        -- ts_ls = {},
+
         -- Python
         "pyright",
+
         -- Bash
         "bashls",
+
         -- JSON
         "jsonls",
+
         -- C
         "clangd",
+
         -- YAML
         "yamlls",
+
         -- CMake
         "cmake",
+
         -- Tailwind CSS
         "tailwindcss",
+
         -- latex
         "texlab",
+
         -- sql
         "sqlls",
+
+        --ltex-ls
+        "ltex",
       }
 
       local settings = {
@@ -77,7 +93,9 @@ return {
       require("mason").setup(settings)
       require("mason-lspconfig").setup({
         ensure_installed = servers,
-        automatic_installation = true,
+        automatic_enable = {
+          exclude = { "ltex" }
+        },
       })
       require("mason-null-ls").setup({
         ensure_installed = nil,
