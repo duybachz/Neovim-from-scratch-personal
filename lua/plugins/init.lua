@@ -21,4 +21,5 @@ return {
   {import = "plugins.languages-frameworks.sql"},
   {import = "plugins.languages-frameworks.latex"},
   {import = "plugins.languages-frameworks.markdown"},
+  {import = "plugins.languages-frameworks.jupyter"},
 }

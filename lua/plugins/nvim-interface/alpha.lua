@@ -37,12 +37,12 @@ return {
         -- local fortune = handle:read("*a")
         -- handle:close()
         -- return fortune
-        return "IN THE NAME OF SHY WE TRUST"
+        return "365 PARTYGIRL"
       end
 
       dashboard.section.footer.val = footer()
 
-      dashboard.section.footer.opts.hl = "hotPink"
+      dashboard.section.footer.opts.hl = "bratGreen"
       dashboard.section.header.opts.hl = "Include"
       dashboard.section.buttons.opts.hl = "Keyword"
 

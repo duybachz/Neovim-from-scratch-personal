@@ -35,5 +35,9 @@ Big thanks to the GOATs [tpope](https://github.com/tpope) and [folke](https://gi
     + **Find the required Neotest adapter on GitHub**
     + **Install in `neotest.lua` as normal lua plugin**
 
+> [!info]
+> To add settings, filetypes or other attributes to the setup of each LSP server, add a `.lua` file with the same name as the LSP server to `lsp/settings`. This file should return the desired attributes in a table. 
+> Furthermore, add the LSP server to the exclude list in the `automatic_enable` attribute of `nvim-lspconfig` to prevent override.
+
 ## Notes
 * There is an additional directory of plugins `plugins-vscode` specifically for plugins to be used in VSCode via [vscode-neovim](https://github.com/vscode-neovim/vscode-neovim)

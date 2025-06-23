@@ -11,7 +11,7 @@ return {
     },
     commit = "7282f7de8aedf861fe0162a559fc2b214383c51c",
     dependencies = {
-      'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-web-devicons',
       'echasnovski/mini.icons',
     },
     config = function ()

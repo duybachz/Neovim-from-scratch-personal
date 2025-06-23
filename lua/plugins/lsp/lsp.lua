@@ -25,7 +25,7 @@ return {
     opts = function ()
       local servers = {
         -- Java
-        -- "jdtls",
+        "jdtls",
         "gradle_ls",
         "groovyls",
 
@@ -122,14 +122,12 @@ return {
 
         server = vim.split(server, "@")[1]
 
-        if server ~= 'jdtls' then
-          local require_ok, conf_opts = pcall(require, "plugins.lsp.settings." .. server)
-          if require_ok then
-            opts = vim.tbl_deep_extend("force", conf_opts, opts)
-          end
-
-          lspconfig[server].setup(opts)
+        local require_ok, conf_opts = pcall(require, "plugins.lsp.settings." .. server)
+        if require_ok then
+          opts = vim.tbl_deep_extend("force", conf_opts, opts)
         end
+
+        lspconfig[server].setup(opts)
       end
     end
   },
