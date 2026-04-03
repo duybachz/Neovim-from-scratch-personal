@@ -6,9 +6,10 @@ local term_opts = { silent = true }
 local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
+vim.g.maplocalleader = ";"
+
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- Modes
 --   normal_mode = "n",
@@ -46,6 +47,14 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
 
+-- Simple auto-close pairs
+keymap("i", "`", "``<left>", opts)
+keymap("i", '"', '""<left>', opts)
+keymap("i", "(", "()<left>", opts)
+keymap("i", "[", "[]<left>", opts)
+keymap("i", "{", "{}<left>", opts)
+keymap("i", "<", "<><left>", opts)
+
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
@@ -80,3 +89,4 @@ keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts) -- Open live grep
 -- keymap("n", "<leader>s", ":BufferLinePick<CR>", opts) -- Toggle quick bufferline picking
 -- keymap("n", "<leader>w", ":bdelete!<CR>", opts) -- Close current buffer with vim-bbye
 keymap("n", "<leader>m", ":Format<cr>", opts) -- Format current open buffer with null-ls
+

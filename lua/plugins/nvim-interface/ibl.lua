@@ -12,8 +12,8 @@ return {
         indent = { char = "│"},
         exclude = {
           filetypes = { 'help', 'packer','nvimtree', 'dashboard', 'neo-tree' },
-          buftypes = { 'terminal', 'nofile', 'quickfix' },
-        }
+          buftypes = { 'terminal', 'nofile', 'quickfix', 'prompt' },
+        },
       })
     end
   }

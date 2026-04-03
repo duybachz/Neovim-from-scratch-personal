@@ -1,6 +1,6 @@
 return {
   {
-    "rcasia/neotest-java",
+    "atm1020/neotest-jdtls",
     ft = "java",
     dependencies = {
       "mfussenegger/nvim-jdtls",
@@ -41,7 +41,7 @@ return {
 
       neotest.setup({
         adapters = {
-          require('neotest-java'),
+          require('neotest-jdtls'),
           require('neotest-jest')({
             jestCommand = "npm test --",
             jestConfigFile = "custom.jest.config.ts",

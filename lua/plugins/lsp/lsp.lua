@@ -3,11 +3,6 @@ return {
     "neovim/nvim-lspconfig", -- enable LSP
     -- event = "VeryLazy",
     config = function ()
-      local status_ok, _ = pcall(require, "lspconfig")
-      if not status_ok then
-        return
-      end
-
       require("plugins.lsp.handlers.handlers").setup()
     end
   },
@@ -25,7 +20,7 @@ return {
     opts = function ()
       local servers = {
         -- Java
-        "jdtls",
+        -- "jdtls",
         "gradle_ls",
         "groovyls",
 
@@ -64,10 +59,13 @@ return {
         "tailwindcss",
 
         -- latex
-        "texlab",
+        "texlab@v5.23.1",
 
         -- sql
         "sqlls",
+
+        -- swiftf
+        -- "sourcekit",
 
         --ltex-ls
         "ltex",
@@ -93,9 +91,7 @@ return {
       require("mason").setup(settings)
       require("mason-lspconfig").setup({
         ensure_installed = servers,
-        automatic_enable = {
-          exclude = { "ltex" }
-        },
+        automatic_enable = true,
       })
       require("mason-null-ls").setup({
         ensure_installed = nil,
@@ -106,28 +102,22 @@ return {
       -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim/issues/39
       vim.api.nvim_command('MasonToolsInstall')
 
-      local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-      if not lspconfig_status_ok then
-        return
-      end
-
-      local opts = {}
-
-      --
       for _, server in pairs(servers) do
-        opts = {
+        local opts = {
           on_attach = require("plugins.lsp.handlers.handlers").on_attach,
           capabilities = require("plugins.lsp.handlers.handlers").capabilities,
         }
 
         server = vim.split(server, "@")[1]
 
-        local require_ok, conf_opts = pcall(require, "plugins.lsp.settings." .. server)
-        if require_ok then
-          opts = vim.tbl_deep_extend("force", conf_opts, opts)
-        end
+        if server ~= 'jdtls' then
+          local require_ok, conf_opts = pcall(require, "plugins.lsp.settings." .. server)
+          if require_ok then
+            opts = vim.tbl_deep_extend("force", conf_opts, opts)
+          end
 
-        lspconfig[server].setup(opts)
+          vim.lsp.config(server, opts)
+        end
       end
     end
   },

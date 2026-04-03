@@ -22,4 +22,6 @@ return {
   {import = "plugins.languages-frameworks.latex"},
   {import = "plugins.languages-frameworks.markdown"},
   {import = "plugins.languages-frameworks.jupyter"},
+  {import = "plugins.languages-frameworks.csv"},
+  {import = "plugins.languages-frameworks.haskell"},
 }

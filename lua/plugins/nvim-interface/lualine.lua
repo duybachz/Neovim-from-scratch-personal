@@ -107,6 +107,7 @@ return {
         },
         tabline = {},
         extensions = {},
+        color = { bg = 'none' }
       })
     end
   },

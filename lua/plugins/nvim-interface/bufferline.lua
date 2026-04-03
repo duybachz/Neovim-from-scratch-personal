@@ -72,7 +72,7 @@ return {
       highlights = {
         fill = {
           guifg = { attribute = "fg", highlight = "TabLine" },
-          guibg = { attribute = "bg", highlight = "TabLine" },
+          guibg = { attribute = "bg", highlight = "none" },
         },
         background = {
           guifg = { attribute = "fg", highlight = "TabLine" },

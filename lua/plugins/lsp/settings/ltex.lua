@@ -54,6 +54,7 @@ return {
   settings = {
     ltex = {
       enabled = enabled_ids,
+      language = "en-AU",
     },
   },
 }

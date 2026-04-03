@@ -47,7 +47,7 @@ return {
           },
         },
         show_help = true, -- show help message on the command line when the popup is visible
-        triggers = {"<leader>"}, -- automatically setup triggers
+        triggers = {"<leader>", "<localleader>"}, -- automatically setup triggers
         -- triggers = {"<leader>"} -- or specify a list manually
       }
 
@@ -116,7 +116,7 @@ return {
           remap = false
         },
         {
-          "<leader>r",
+          "<leader>R",
           "<C-w>=",
           desc = "Resize splits equally",
           nowait = true,
@@ -242,13 +242,6 @@ return {
           remap = false
         },
         {
-          "<leader>lI",
-          "<cmd>LspInstallInfo<cr>",
-          desc = "Installer Info",
-          nowait = true,
-          remap = false
-        },
-        {
           "<leader>lS",
           "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
           desc = "Workspace Symbols",
@@ -273,13 +266,6 @@ return {
           "<leader>lf",
           "<cmd>lua vim.lsp.buf.format{async=true}<cr>",
           desc = "Format",
-          nowait = true,
-          remap = false
-        },
-        {
-          "<leader>li",
-          "<cmd>LspInfo<cr>",
-          desc = "Info",
           nowait = true,
           remap = false
         },
@@ -459,6 +445,13 @@ return {
           remap = false
         },
         {
+          "<leader>tm",
+          "<cmd>FloatermToggle<cr>",
+          desc = "Floaterm",
+          nowait = true,
+          remap = false
+        },
+        {
           "<leader>tp",
           "<cmd>lua _PYTHON_TOGGLE()<cr>",
           desc = "Python",
@@ -529,6 +522,13 @@ return {
           "<leader>nm",
           "<cmd>lua require('neotest').run.run()<cr>",
           desc = "Run nearest method",
+          nowait = true,
+          remap = false
+        },
+        -- Molten & Quarto
+        {
+          "<leader>r",
+          group = 'Molten',
           nowait = true,
           remap = false
         },
@@ -641,6 +641,13 @@ return {
           nowait = true,
           remap = false,
           hidden = true
+        },
+        -- Haskell tools
+        {
+          "<leader>z",
+          group = "Haskell tools",
+          nowait = true,
+          remap = false
         },
       }
 

@@ -11,6 +11,7 @@ return {
       -- Additional colors
       vim.api.nvim_set_hl(0, "bratGreen", { fg = "#8ACE00" })
       vim.api.nvim_set_hl(0, "hotPink", { fg = "#FF69B4" })
+      vim.api.nvim_set_hl(0, "transparent", { bg = "None" })
 
       local dashboard = require("alpha.themes.dashboard")
       dashboard.section.header.val = {

@@ -1,42 +1,25 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     lazy = false,
+    dependencies = {
+      "OXY2DEV/markview.nvim",
+    },
     config = function ()
-      local treesitter = require "nvim-treesitter"
-      local configs = require "nvim-treesitter.configs"
+      local status, nvim_treesitter = pcall(require, "nvim-treesitter")
+      if not status then
+        return
+      end
 
-      configs.setup {
-        auto_install = true,
-        ensure_installed = {
-          "lua",
-          "markdown",
-          "markdown_inline",
-          "bash",
-          "python",
-          "latex",
-        }, -- put the language you want in this array
-        -- ensure_installed = "all", -- one of "all" or a list of languages
-        ignore_install = { "" },                                                       -- List of parsers to ignore installing
-        sync_install = false,                                                          -- install languages synchronously (only applied to `ensure_installed`)
-
-        highlight = {
-          enable = true,       -- false will disable the whole extension
-          disable = {
-            'css',
-            'latex'
-          }, -- list of language that will be disabled
-        },
-        indent = {
-          enable = true,
-          disable = { "python", "css" }
-        },
-
-        --[[ context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
-        }, ]]
-      }
+      nvim_treesitter.install({
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "bash",
+        "python",
+        "latex",
+      })
     end
   }
 }
