@@ -47,14 +47,6 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
 
--- Simple auto-close pairs
-keymap("i", "`", "``<left>", opts)
-keymap("i", '"', '""<left>', opts)
-keymap("i", "(", "()<left>", opts)
-keymap("i", "[", "[]<left>", opts)
-keymap("i", "{", "{}<left>", opts)
-keymap("i", "<", "<><left>", opts)
-
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)

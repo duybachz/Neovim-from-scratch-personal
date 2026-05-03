@@ -16,7 +16,6 @@ return {
   -- Import language specific plugins
   {import = "plugins.languages-frameworks.html-css"},
   {import = "plugins.languages-frameworks.typescript"},
-  {import = "plugins.languages-frameworks.tailwind"},
   {import = "plugins.languages-frameworks.java"},
   {import = "plugins.languages-frameworks.sql"},
   {import = "plugins.languages-frameworks.latex"},
