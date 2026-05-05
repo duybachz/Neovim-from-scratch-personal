@@ -1,4 +1,4 @@
-# Config documentation
+# Bich's Neovim Config
 ## Introduction
 This Neovim config is forked from [LunarVim/Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch) with a few changes made, namely:
 * Config is now based on [lazy.nvim](https://github.com/folke/lazy.nvim)  instead of [packer.nvim](https://github.com/wbthomason/packer.nvim), which has been unmaintained since late 2023
@@ -34,6 +34,12 @@ Big thanks to the GOATs [tpope](https://github.com/tpope) and [folke](https://gi
 * To add support for a new test suite:
     + **Find the required Neotest adapter on GitHub**
     + **Install in `neotest.lua` as normal lua plugin**
+ 
+## Uninstallation
+In the event that a clean re-installation is needed; remove `neovim` using `brew` or whichever package manager you are using, along with these following directories:
+* `~/.config/nvim` (Make sure your desired config is backed up)
+* `~/.local/share/nvim`
+* `~/.local/state/nvim`
 
 > [!info]
 > To add settings, filetypes or other attributes to the setup of each LSP server, add a `.lua` file with the same name as the LSP server to `lsp/settings`. This file should return the desired attributes in a table. 
