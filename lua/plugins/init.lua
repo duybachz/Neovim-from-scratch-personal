@@ -23,4 +23,5 @@ return {
   {import = "plugins.languages-frameworks.jupyter"},
   {import = "plugins.languages-frameworks.csv"},
   {import = "plugins.languages-frameworks.haskell"},
+  {import = "plugins.languages-frameworks.verifpal"},
 }

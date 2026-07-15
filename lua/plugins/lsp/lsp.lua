@@ -34,7 +34,7 @@ return {
         "html",
 
         -- Javascript
-        "ts_ls",
+        "vtsls",
 
         -- Python
         "pyright",
@@ -47,6 +47,9 @@ return {
 
         -- C
         "clangd",
+
+        -- C#
+        "csharp_ls",
 
         -- YAML
         "yamlls",
