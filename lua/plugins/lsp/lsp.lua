@@ -48,9 +48,6 @@ return {
         -- C
         "clangd",
 
-        -- C#
-        "csharp_ls",
-
         -- YAML
         "yamlls",
 

@@ -1,3 +1,16 @@
+-- Use the globally installed TypeScript (nvm on macOS, npm prefix on Linux);
+-- vtsls falls back to its bundled version when none is found
+local tsdk = vim.fn.glob(vim.env.HOME .. "/.nvm/versions/node/*/lib/node_modules/typescript/lib", false, true)
+tsdk = tsdk[#tsdk]
+if not tsdk then
+  for _, path in ipairs({ "/usr/local/lib/node_modules/typescript/lib", "/usr/lib/node_modules/typescript/lib" }) do
+    if vim.fn.isdirectory(path) == 1 then
+      tsdk = path
+      break
+    end
+  end
+end
+
 return {
   settings = {
     vtsls = {
@@ -5,7 +18,7 @@ return {
         completion = { enableServerSideFuzzyMatch = true },
       },
       autoUseWorkspaceTsdk = true,
-      tsdk = "/Users/bachvu7723/.nvm/versions/node/v24.13.1/lib/node_modules/typescript/lib",
+      tsdk = tsdk,
     },
     typescript = {
       tsserver = {
