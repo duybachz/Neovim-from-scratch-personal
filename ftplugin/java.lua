@@ -5,6 +5,17 @@ local _, jdtls = pcall(require, "jdtls")
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = home .. "/jdtls-workspace/" .. project_name
 
+-- JDK location: $JAVA_HOME, then SDKMAN (macOS), then the `java` on $PATH
+local java_home = vim.env.JAVA_HOME
+if not java_home or java_home == "" then
+	local sdkman_java = home .. "/.sdkman/candidates/java/current"
+	if vim.fn.isdirectory(sdkman_java) == 1 then
+		java_home = sdkman_java
+	else
+		java_home = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.exepath("java")), ":h:h")
+	end
+end
+
 local system_os = ""
 
 -- Determine OS
@@ -64,7 +75,7 @@ local config = {
 	settings = {
 		java = {
 			-- TODO Replace this with the absolute path to your main java version (JDK 17 or higher)
-			home = "/Users/bachvu7723/.sdkman/candidates/java/current",
+			home = java_home,
 			eclipse = {
 				downloadSources = true,
 			},
@@ -75,7 +86,7 @@ local config = {
 				runtimes = {
 					{
 						name = "JavaSE-21",
-						path = "/Users/bachvu7723/.sdkman/candidates/java/current",
+						path = java_home,
 					},
 				},
 			},

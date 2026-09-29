@@ -9,7 +9,7 @@ return {
       vim.g.vimtex_view_method = "sioyek"
       vim.g.vimtex_quickfix_mode = 0
       vim.g.vimtex_compiler_latexmk = {
-        aux_dir = '/Users/bachvu7723/vimtex-temp',
+        aux_dir = vim.env.HOME .. '/vimtex-temp',
       }
 
       local au_group = vim.api.nvim_create_augroup("vimtex_events", {})
