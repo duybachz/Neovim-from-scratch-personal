@@ -6,8 +6,7 @@ return {
     init = function()
       -- VimTeX configuration goes here, e.g.
       vim.g.vimtex_lsp_enabled = 1
-      vim.g.vimtex_view_method = "zathura_simple"
-      vim.g.vimtex_view_zathura_use_synctex = 0
+      vim.g.vimtex_view_method = "sioyek"
       vim.g.vimtex_quickfix_mode = 0
       vim.g.vimtex_compiler_latexmk = {
         aux_dir = '/Users/bachvu7723/vimtex-temp',

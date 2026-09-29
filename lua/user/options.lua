@@ -56,6 +56,7 @@ opt.formatoptions = "jcroqlnt"              -- tcqj
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 
+-- Miscellaneous
 opt.showtabline = 2                         -- Always show tabs
 opt.numberwidth = 4                         -- Set number column width to 2 {default 4}
 opt.linebreak = true                        -- Companion to wrap, don't split words
@@ -63,7 +64,12 @@ opt.guifont = "monospace:h17"               -- The font used in graphical neovim
 
 vim.opt.shortmess:append "c"
 
+-- VIm-based settings
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 vim.opt.colorcolumn = '80'
+-- Auto-save
+vim.api.nvim_create_autocmd({ "FocusLost", "InsertLeave", "TextChanged" }, {
+  command="silent! update",
+})
